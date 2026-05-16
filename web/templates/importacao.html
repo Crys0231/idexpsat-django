@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-white">Importação de Dados</h2>
+
+    <div class="bg-primary p-6 rounded-lg border border-gray-700 shadow-lg">
+        <p class="text-sm text-gray-400 mb-6">Faça o upload do arquivo CSV extraído do sistema da concessionária. O
+            sistema formatará automaticamente nomes, placas e removerá duplicidades.</p>
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %} <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-gray-300">Marca</label>
+                    <select name="marca_id" required
+                        class="w-full bg-secondary border border-gray-600 rounded p-2 text-white focus:outline-none focus:border-accent">
+                        <option value="">Selecione uma marca...</option>
+                        {% for marca in marcas %}
+                        <option value="{{ marca.id }}">{{ marca.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-gray-300">Tipo de Pesquisa</label>
+                    <select name="tipo_pesquisa_id" required
+                        class="w-full bg-secondary border border-gray-600 rounded p-2 text-white focus:outline-none focus:border-accent">
+                        <option value="venda">Venda</option>
+                        <option value="pos_venda">Pós-Venda</option>
+                    </select>
+                </div>
+            </div>
+
+            <div
+                class="border-2 border-dashed border-gray-600 rounded-lg p-10 text-center hover:bg-gray-800 transition">
+                <input type="file" name="csv_file" accept=".csv" required
+                    class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-secondary hover:file:bg-sky-400 cursor-pointer" />
+            </div>
+
+            <button type="submit"
+                class="w-full py-3 bg-accent text-secondary font-bold rounded hover:bg-sky-400 transition shadow-lg shadow-sky-900/20">
+                Processar Arquivo
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
