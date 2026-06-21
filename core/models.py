@@ -34,7 +34,6 @@ class Cliente(BaseModel):
     nome = models.CharField(max_length=255, null=True, blank=True)
     telefone = models.CharField(max_length=50)
     cidade = models.CharField(max_length=255, null=True, blank=True)
-    telegram_chat_id = models.TextField(null=True, blank=True)
 
     class Meta:
         db_table = 'clientes'

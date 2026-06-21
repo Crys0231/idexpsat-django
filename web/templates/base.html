@@ -26,10 +26,19 @@
             <h1 class="text-xl font-bold text-accent tracking-widest">IDEXPSAT</h1>
         </div>
         <nav class="flex-1 p-4 space-y-2">
-            <a href="#" class="block px-4 py-2 rounded transition hover:bg-gray-700 text-gray-300">📊 Dashboard</a>
-            <a href="/importacao/" class="block px-4 py-2 rounded bg-gray-700 text-white font-semibold">📁 Importar
-                CSV</a>
-            <a href="#" class="block px-4 py-2 rounded transition hover:bg-gray-700 text-gray-300">👥 Clientes NPS</a>
+            <a href="#" class="block px-4 py-2 rounded transition hover:bg-gray-700 text-gray-300">
+                📊 Dashboard
+            </a>
+
+            <a href="{% url 'importacao' %}"
+                class="block px-4 py-2 rounded transition {% if request.resolver_match.url_name == 'importacao' %}bg-gray-700 text-white font-semibold shadow{% else %}hover:bg-gray-700 text-gray-300{% endif %}">
+                📁 Importar CSV
+            </a>
+
+            <a href="{% url 'crm_clientes' %}"
+                class="block px-4 py-2 rounded transition {% if request.resolver_match.url_name == 'crm_clientes' %}bg-gray-700 text-white font-semibold shadow{% else %}hover:bg-gray-700 text-gray-300{% endif %}">
+                👥 Clientes NPS
+            </a>
         </nav>
     </aside>
 
